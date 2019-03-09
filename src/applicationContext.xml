@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+	xmlns:tx="http://www.springframework.org/schema/tx">
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/?serverTimezone=GMT">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="1+1==Two"></property>
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/xuyj/boatmate/model/UserInfo.hbm.xml</value>
+				<value>com/xuyj/boatmate/model/Dynamic.hbm.xml</value>
+				<value>
+					com/xuyj/boatmate/model/SubComment.hbm.xml
+				</value>
+				<value>com/xuyj/boatmate/model/Comment.hbm.xml</value>
+				<value>com/xuyj/boatmate/model/Awesome.hbm.xml</value>
+				<value>
+					com/xuyj/boatmate/model/SubAwesome.hbm.xml
+				</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
+
+
+
+	<!--DAOs -->
+	<bean id="baseDAO" class="com.xuyj.boatmate.dao.BaseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="userInfoDAO" class="com.xuyj.boatmate.dao.impl.UserInfoDAO"
+		parent="baseDAO" />
+	<bean id="dynamicDAO" class="com.xuyj.boatmate.dao.impl.DynamicDAO"
+		parent="baseDAO" />
+
+	<bean id="commentDAO" class="com.xuyj.boatmate.dao.impl.CommentDAO"
+		parent="baseDAO" />
+	<bean id="subCommentDAO" class="com.xuyj.boatmate.dao.impl.SubCommentDAO"
+		parent="baseDAO" />
+	<!--Actions -->
+	<bean id="register" class="com.xuyj.boatmate.action.Register"
+		scope="prototype" />
+
+	<bean id="login" class="com.xuyj.boatmate.action.LoginAction"
+		scope="prototype" />
+	<bean id="getUserInfo" class="com.xuyj.boatmate.action.GetUserInfo"
+		scope="prototype" />
+
+	<bean id="editUserInfo" class="com.xuyj.boatmate.action.EditUserInfo"
+		scope="prototype" />
+	<bean id="publishDynamic" class="com.xuyj.boatmate.action.PublishDynamic"
+		scope="prototype" />
+
+	<bean id="getDynamics" class="com.xuyj.boatmate.action.GetDynamics"
+		scope="prototype" />
+	<bean id="publishComment" class="com.xuyj.boatmate.action.PublishComment"
+		scope="prototype" />
+	<bean id="getComments" class="com.xuyj.boatmate.action.GetComments"
+		scope="prototype" />
+	<bean id="getSubComments" class="com.xuyj.boatmate.action.GetSubComments"
+		scope="prototype" />
+	<bean id="publishSubComment" class="com.xuyj.boatmate.action.PublishSubComment"
+		scope="prototype" />
+	<bean id="deleteDynamic" class="com.xuyj.boatmate.action.DeleteDynamic"
+		scope="prototype" />
+	<bean id="awesomeDynamic" class="com.xuyj.boatmate.action.AwesomeDynamic"
+		scope="prototype" />
+	<bean id="awesomeComment" class="com.xuyj.boatmate.action.AwesomeComment"
+		scope="prototype" />
+	<bean id="deleteComment" class="com.xuyj.boatmate.action.DeleteComment"
+		scope="prototype" />
+
+	<bean id="deleteSubComment" class="com.xuyj.boatmate.action.DeleteSubComment"
+		scope="prototype" />
+
+	<bean id="dynamicDetail" class="com.xuyj.boatmate.action.DynamicDetail"
+		scope="prototype" />
+	<bean id="commentDetail" class="com.xuyj.boatmate.action.CommentDetail"
+		scope="prototype" />
+	<bean id="download" class="com.xuyj.boatmate.action.DownloadAction"
+		scope="prototype" />
+
+</beans>

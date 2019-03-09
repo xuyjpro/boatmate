@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd" >
+<struts>
+	<package name="download" namespace="/" extends="struts-default">
+		<!-- -->
+		<action name="fileLoad_*" class="download" method="{1}">
+			<result type="stream">
+				<param name="bufferSize">1024*2</param>
+			</result>
+		</action>
+	</package>
+	<package name="default" namespace="/" extends="json-default">
+
+		<!--登录 -->
+		<action name="login" class="login" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 注册 -->
+		<action name="register" class="register" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 获取个人资料 -->
+		<action name="getUserInfo" class="getUserInfo" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 修改个人资料 -->
+		<action name="editUserInfo" class="editUserInfo" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 发布动态 -->
+		<action name="publishDynamic" class="publishDynamic" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 获取动态 -->
+		<action name="getDynamics" class="getDynamics" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 获取动态详情 -->
+		<action name="dynamicDetail" class="dynamicDetail" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 删除动态 -->
+		<action name="deleteDynamic" class="deleteDynamic" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 删除动态 -->
+		<action name="awesomeDynamic" class="awesomeDynamic" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 发布评论 -->
+		<action name="publishComment" class="publishComment" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 获取评论 -->
+		<action name="getComments" class="getComments" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+			<!-- 获取评论详情 -->
+		<action name="commentDetail" class="commentDetail" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 删除评论 -->
+
+		<action name="deleteComment" class="deleteComment" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 点赞评论 -->
+
+		<action name="awesomeComment" class="awesomeComment" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 发布子评论 -->
+		<action name="publishSubComment" class="publishSubComment"
+			method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 获取子评论 -->
+		<action name="getSubComments" class="getSubComments" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<!-- 删除子评论 -->
+		<action name="deleteSubComment" class="deleteSubComment" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+	</package>
+
+</struts>
