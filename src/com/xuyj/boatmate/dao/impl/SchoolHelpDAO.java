@@ -220,7 +220,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 					if (uid != sh.getUid() && sh.getStatus() == 0&&sh.getPostUid()!=0) {
 						sh.setPostUid(uid);
 						sh.setStatus(1);
-						session.save(sh);
+						session.update(sh);
 
 					} else {
 						rb.setCode(400);
@@ -230,7 +230,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 				} else if (status == 2) {// 确认
 					if (uid == sh.getUid() && sh.getStatus() == 1) {
 						sh.setStatus(2);
-						session.save(sh);
+						session.update(sh);
 
 					} else {
 						rb.setCode(400);
@@ -241,7 +241,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 					if (uid == sh.getUid() && sh.getStatus() == 1) {
 						sh.setStatus(0);
 						sh.setPostUid(0);
-						session.save(sh);
+						session.update(sh);
 
 					} else {
 						rb.setCode(400);
@@ -298,6 +298,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 					UserInfo ui = (UserInfo) list1.get(0);
 					csh.setHeadPic(ui.getHeadPic());
 					csh.setNickname(ui.getNickname());
+					csh.setHeartWord(ui.getHeartWord());
 				}
 				csh.setSchoolHelp(sh);
 				rb.setCode(200);
@@ -326,6 +327,15 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 
 		private String nickname;
 		private String headPic;
+		private String heartWord;
+		
+		public String getHeartWord() {
+			return heartWord;
+		}
+
+		public void setHeartWord(String heartWord) {
+			this.heartWord = heartWord;
+		}
 
 		public String getNickname() {
 			return nickname;
