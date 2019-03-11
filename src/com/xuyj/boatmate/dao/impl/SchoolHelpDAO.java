@@ -354,6 +354,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 		}
 
 		public void setSchoolHelp(SchoolHelp sh) {
+			setId(sh.getId());
 			setUid(sh.getUid());
 			setTime(sh.getTime());
 			setTitle(sh.getTitle());
