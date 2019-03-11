@@ -41,7 +41,9 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			sh.setTitle(title);
 			sh.setContent(content);
 			sh.setTime(System.currentTimeMillis());
-
+			sh.setStatus(0);
+			sh.setPostUid(0);
+			sh.setBrowser(0);
 			sh.setBounty(bounty);
 			session.save(sh);
 			ts.commit();
@@ -217,7 +219,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 				SchoolHelp sh = (SchoolHelp) list.get(0);
 				rb.setCode(200);
 				if (status == 1) {// 提交
-					if (uid != sh.getUid() && sh.getStatus() == 0&&sh.getPostUid()!=0) {
+					if (uid != sh.getUid() && sh.getStatus() == 0&&sh.getPostUid()==0) {
 						sh.setPostUid(uid);
 						sh.setStatus(1);
 						session.update(sh);
@@ -228,7 +230,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 
 					}
 				} else if (status == 2) {// 确认
-					if (uid == sh.getUid() && sh.getStatus() == 1) {
+					if (uid == sh.getUid() && sh.getStatus() == 1&&sh.getPostUid()!=0) {
 						sh.setStatus(2);
 						session.update(sh);
 
@@ -258,6 +260,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			ts.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			ts.rollback();
 			rb.setCode(400);
 			rb.setMessage("服务器异常");
