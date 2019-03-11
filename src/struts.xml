@@ -132,7 +132,7 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
-			<!-- 获取评论详情 -->
+		<!-- 获取评论详情 -->
 		<action name="commentDetail" class="commentDetail" method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
@@ -191,7 +191,55 @@
 			</result>
 		</action>
 		<!-- 删除子评论 -->
-		<action name="deleteSubComment" class="deleteSubComment" method="post">
+		<action name="deleteSubComment" class="deleteSubComment"
+			method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+
+		<!-- 发布校园帮帮 -->
+		<action name="publishSchoolHelp" class="publishSchoolHelp"
+			method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+
+		<!-- 获取校园帮帮列表 -->
+		<action name="getSchoolHelps" class="getSchoolHelps" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="modifyStatusHelp" class="modifyStatusHelp"
+			method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="schoolHelpDetail" class="schoolHelpDetail"
+			method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
 

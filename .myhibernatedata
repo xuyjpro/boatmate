@@ -1,16 +1,20 @@
 #MyEclipse Hibernate Properties
-#Thu Mar 07 17:03:51 CST 2019
-genVersionTag=false
-genAnnotations=false
-configFile=/boatmate/src/applicationContext.xml
-reStrategyClass=
-sessionFactoryId=sessionFactory
-profile=
-detectM2M=false
+#Mon Mar 11 15:46:17 CST 2019
 genBasicCompId=false
-keyGenerator=
-createConfigFile=true
-basePersistenceClass=
+sessionFactoryName=
+profile=
+daoSFId=
+jndiPath=
+detectM2M=false
+reStrategyClass=
 detectO2O=false
+springDaoFile=
 useJavaTypes=true
+keyGenerator=native
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=false
 reSettingsFile=
+configFile=/boatmate/src/applicationContext.xml
+createConfigFile=true
