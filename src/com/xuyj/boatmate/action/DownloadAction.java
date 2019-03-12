@@ -1,5 +1,6 @@
 package com.xuyj.boatmate.action;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.xuyj.boatmate.tools.ImageTools;
 
 public class DownloadAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
@@ -30,8 +32,10 @@ public class DownloadAction extends ActionSupport {
 		contentType = "text/html";// 文件下载的类型
 		contentDisposition = "attachment; filename = " + fName1 + "";
 		// 获取指定下载文件的路径
-		ServletContext servletContext = ServletActionContext.getServletContext();
-		String fileName = servletContext.getRealPath("/image/" + fName1 + "");
+//		ServletContext servletContext = ServletActionContext.getServletContext();
+//		String fileName = servletContext.getRealPath("/image/" + fName1 + "");
+		
+		String fileName=ImageTools.imageDirPath+File.separator+fName1;
 		inputStream = new FileInputStream(fileName);
 		contentLength = inputStream.available();
 		return SUCCESS;
