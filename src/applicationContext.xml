@@ -6,9 +6,8 @@
 
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-	<!-- 	<property name="url"
-			value="jdbc:mysql://localhost:3306/?serverTimezone=GMT"> -->
-				<property name="url"
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/?serverTimezone=GMT"> -->
+		<property name="url"
 			value="jdbc:mysql://47.111.163.217:3306/?serverTimezone=GMT">
 		</property>
 		<property name="username" value="root"></property>
@@ -43,6 +42,7 @@
 				<value>
 					com/xuyj/boatmate/model/SchoolHelp.hbm.xml
 				</value>
+				<value>com/xuyj/boatmate/model/Stuff.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -74,6 +74,12 @@
 		parent="baseDAO" />
 	<bean id="schoolHelpDAO" class="com.xuyj.boatmate.dao.impl.SchoolHelpDAO"
 		parent="baseDAO" />
+
+	<bean id="stuffDAO" class="com.xuyj.boatmate.dao.impl.StuffDAO"
+		parent="baseDAO" />
+
+
+
 	<!--Actions -->
 	<bean id="register" class="com.xuyj.boatmate.action.Register"
 		scope="prototype" />
@@ -122,10 +128,16 @@
 
 	<bean id="getSchoolHelps" class="com.xuyj.boatmate.action.GetSchoolHelps"
 		scope="prototype" />
-		<bean id="modifyStatusHelp" class="com.xuyj.boatmate.action.ModifyStatusSchoolHelp"
+	<bean id="modifyStatusHelp" class="com.xuyj.boatmate.action.ModifyStatusSchoolHelp"
 		scope="prototype" />
-		<bean id="schoolHelpDetail" class="com.xuyj.boatmate.action.SchoolHelpDetail"
+	<bean id="schoolHelpDetail" class="com.xuyj.boatmate.action.SchoolHelpDetail"
 		scope="prototype" />
-		<bean id="deleteSchoolHelp" class="com.xuyj.boatmate.action.DeleteSchoolHelp"
+	<bean id="deleteSchoolHelp" class="com.xuyj.boatmate.action.DeleteSchoolHelp"
+		scope="prototype" />
+
+	<!-- 物品 -->
+	<bean id="publishStuff" class="com.xuyj.boatmate.action.PublishStuff"
+		scope="prototype" />
+	<bean id="getStuffs" class="com.xuyj.boatmate.action.GetStuffs"
 		scope="prototype" />
 </beans>

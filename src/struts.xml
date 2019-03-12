@@ -260,6 +260,30 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
+		
+		<!--物品  -->
+		<action name="publishStuff" class="publishStuff"
+			method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="getStuffs" class="getStuffs"
+			method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
 	</package>
 
 </struts>

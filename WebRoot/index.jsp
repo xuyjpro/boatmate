@@ -47,30 +47,7 @@
 		function ajaxLog(s) {
 			console.log(s);
 		}
-
-
-		/* 	$.ajax({
-				type : "POST",
-				url : url,
-				data : JSON.stringify({
-					phone:"15252478436",
-					password:"1234567"
-					
-				}),
-				
-				
-				dataType : "json", // 预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断，比如XML MIME类型就被识别为XML。
 		
-				contentType : "application/json", //发送信息至服务器时内容编码类型。             
-				headers:{
-					token:token
-				},
-				success : function(data) {
-					console.log("data= ", data);
-			
-				}
-			}); */
-	
 		$.post(url, json)
 		.done(function(data) {
 			console.log('成功, 收到的数据: ' + JSON.stringify(data));
