@@ -59,8 +59,13 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 
 				}
 				if(pictures.size()==2){
+					
+					long picture1=System.currentTimeMillis();
+					ImageTools.saveImage(pictures.get(0), picture1+"");
+					stuff.setPicture1(picture1+"");
+					
+					
 					long picture2=System.currentTimeMillis();
-
 					ImageTools.saveImage(pictures.get(1), picture2+"");
 					stuff.setPicture2(picture2+"");
 
