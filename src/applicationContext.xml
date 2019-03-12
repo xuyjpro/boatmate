@@ -124,5 +124,6 @@
 		scope="prototype" />
 		<bean id="schoolHelpDetail" class="com.xuyj.boatmate.action.SchoolHelpDetail"
 		scope="prototype" />
-		
+		<bean id="deleteSchoolHelp" class="com.xuyj.boatmate.action.DeleteSchoolHelp"
+		scope="prototype" />
 </beans>

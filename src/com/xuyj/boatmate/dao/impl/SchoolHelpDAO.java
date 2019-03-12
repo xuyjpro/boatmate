@@ -181,7 +181,40 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 	@Override
 	public ResultBean delete(String token, int id) {
 		// TODO Auto-generated method stub
-		return null;
+		ResultBean rb=new ResultBean();
+		int uid = 0;
+		try {
+			uid = Integer.parseInt(SecretUtils.decode(token));
+
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+			rb.setCode(400);
+			rb.setMessage("该用户不存在");
+			return rb;
+		}
+		Session session = getSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			String hql="delete SchoolHelp where id=? and uid=?";
+			Query query=session.createQuery(hql);
+			
+			query.setParameter(0, id);
+			query.setParameter(1, uid);
+			query.executeUpdate();
+			ts.commit();
+			rb.setCode(200);
+		
+	
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage("服务器异常，刷新重试");
+		}finally {
+			session.close();
+		}
+		return rb;
 	}
 	/*
 	 * (non-Javadoc)
