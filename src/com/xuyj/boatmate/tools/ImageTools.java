@@ -8,11 +8,24 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ImageTools {
-	public static boolean saveImage (File imagePic,String path){
+	public static String imageDirPath;
+	static{
 		File file=new File(ToolUtil.getWebRootSubDir("/image"));
-		if(!file.exists()){
-			file.mkdir();
+		String parentPath=file.getParentFile().getParentFile().getAbsolutePath();
+		File imageDir=new File(parentPath+File.separator+"image");
+		if(!imageDir.exists()){
+			imageDir.mkdir();
 		}
+		imageDirPath=imageDir.getAbsolutePath();
+	}
+	public static boolean saveImage (File imagePic,String name){
+		//File file=new File(ToolUtil.getWebRootSubDir("/image"));
+		
+		
+//		if(!file.exists()){
+//			file.mkdir();
+//		}
+		String path=imageDirPath+File.separator+name;
 		boolean isSuccess=false;
 		 OutputStream os = null;
 		 InputStream is=null;

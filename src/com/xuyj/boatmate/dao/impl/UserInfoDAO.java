@@ -202,9 +202,9 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 
 		if (headPic != null) { // 先判断是否有图片
 			time = System.currentTimeMillis();
-			String path = ToolUtil.getWebRootSubDir("/image") + File.separator + time;
+			//String fileName = ToolUtil.getWebRootSubDir("/image") + File.separator + time;
 			try {
-				if (!ImageTools.saveImage(headPic, path)) {// 保存失败则直接返回
+				if (!ImageTools.saveImage(headPic, time+"")) {// 保存失败则直接返回
 					rb.setCode(400);
 					rb.setMessage("图片上传失败");
 					return rb;
