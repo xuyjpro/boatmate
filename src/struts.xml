@@ -7,7 +7,7 @@
 		<!-- -->
 		<action name="fileLoad_*" class="download" method="{1}">
 			<result type="stream">
-				<param name="bufferSize">1024*2</param>
+				<param name="bufferSize">1024*10</param>
 			</result>
 		</action>
 	</package>
