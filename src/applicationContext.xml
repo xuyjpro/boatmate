@@ -43,7 +43,9 @@
 					com/xuyj/boatmate/model/SchoolHelp.hbm.xml
 				</value>
 				<value>com/xuyj/boatmate/model/Stuff.hbm.xml</value>
-			</list>
+				<value>
+					com/xuyj/boatmate/model/AppVersion.hbm.xml
+				</value></list>
 		</property>
 	</bean>
 	<bean id="transactionManager"
@@ -79,8 +81,19 @@
 		parent="baseDAO" />
 
 
-
+<bean id="appVersionDAO" class="com.xuyj.boatmate.dao.impl.AppVersionDAO"
+		parent="baseDAO" />
+		
 	<!--Actions -->
+	<!-- 版本控制 -->
+	
+	<bean id="publishAppVersion" class="com.xuyj.boatmate.action.PublishAppVersion"
+		scope="prototype" />
+		
+			
+	<bean id="getAppVersion" class="com.xuyj.boatmate.action.GetAppVersion"
+		scope="prototype" />
+	<!-- 登录注册 -->
 	<bean id="register" class="com.xuyj.boatmate.action.Register"
 		scope="prototype" />
 
@@ -140,4 +153,5 @@
 		scope="prototype" />
 	<bean id="getStuffs" class="com.xuyj.boatmate.action.GetStuffs"
 		scope="prototype" />
+		
 </beans>

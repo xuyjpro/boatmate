@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd" >
 <struts>
+      <constant name="struts.multipart.maxSize" value="20971520" /> <!-- 设置允许最大值  20MB(1024*1024*20) -->  
+
 	<package name="download" namespace="/" extends="struts-default">
 		<!-- -->
 		<action name="fileLoad_*" class="download" method="{1}">
@@ -11,6 +13,27 @@
 	</package>
 	<package name="default" namespace="/" extends="json-default">
 
+		<!--版本控制 -->
+		<action name="getAppVersion" class="getAppVersion" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="publishAppVersion" class="publishAppVersion" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
 		<!--登录 -->
 		<action name="login" class="login" method="post">
 			<result name="success" type="json">
@@ -260,10 +283,9 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
-		
-		<!--物品  -->
-		<action name="publishStuff" class="publishStuff"
-			method="post">
+
+		<!--物品 -->
+		<action name="publishStuff" class="publishStuff" method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
 
@@ -273,8 +295,7 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
-		<action name="getStuffs" class="getStuffs"
-			method="post">
+		<action name="getStuffs" class="getStuffs" method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
 
