@@ -29,6 +29,7 @@ public class AppVersionDAO extends BaseDAO {
 			query.setMaxResults(1);
 			List list=query.list();
 			rb.setCode(200);
+			
 			rb.setData(list);
 			
 			
@@ -60,9 +61,9 @@ public class AppVersionDAO extends BaseDAO {
 			AppVersion av=new AppVersion();
 			av.setVersionCode(versionCode);
 			av.setVersionName(versionName);
-			av.setApkName("toget"+versionName+".apk");
+			av.setApkName("toget-"+versionName+".apk");
 			
-			ImageTools.saveImage(apkFile,"toget"+versionName+".apk");
+			ImageTools.saveImage(apkFile,"toget-"+versionName+".apk");
 			av.setDownloadUrl(av.getApkName());
 			session.save(av);
 			ts.commit();
