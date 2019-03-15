@@ -17,6 +17,8 @@ public class Stuff implements java.io.Serializable {
 	private Integer hot;
 	private String keyword;
 	private Integer category;
+	private Float price;
+	private String title;
 
 	// Constructors
 
@@ -33,7 +35,7 @@ public class Stuff implements java.io.Serializable {
 
 	/** full constructor */
 	public Stuff(Integer uid, Long time, String content, String picture1, String picture2, Integer hot, String keyword,
-			Integer category) {
+			Integer category, Float price, String title) {
 		this.uid = uid;
 		this.time = time;
 		this.content = content;
@@ -42,6 +44,8 @@ public class Stuff implements java.io.Serializable {
 		this.hot = hot;
 		this.keyword = keyword;
 		this.category = category;
+		this.price = price;
+		this.title = title;
 	}
 
 	// Property accessors
@@ -116,6 +120,22 @@ public class Stuff implements java.io.Serializable {
 
 	public void setCategory(Integer category) {
 		this.category = category;
+	}
+
+	public Float getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
