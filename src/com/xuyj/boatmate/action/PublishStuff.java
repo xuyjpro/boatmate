@@ -13,11 +13,12 @@ public class PublishStuff extends BaseAction {
 	private String title;
 	private List<File> pictures;
 	private String keyword;
+	private float price;
 	@Override
 	public String post() {
 		// TODO Auto-generated method stub
 		IStuffDAO dao=(IStuffDAO) getApplicationContext().getBean("stuffDAO");
-		rb=dao.publish(token, content, pictures, category, keyword,title);
+		rb=dao.publish(token, content, pictures, category, keyword,title,price);
 		return SUCCESS;
 	}
 	public String getToken() {

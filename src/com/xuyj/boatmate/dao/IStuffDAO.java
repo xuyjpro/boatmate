@@ -7,7 +7,7 @@ import com.xuyj.boatmate.model.ResultBean;
 
 public interface IStuffDAO {
 
-	ResultBean publish(String token,String content,List<File> pictures,int  category,String keyword,String title);
+	ResultBean publish(String token,String content,List<File> pictures,int  category,String keyword,String title,float price);
 	ResultBean getList(int currentPage,int pageSize,int category);
 	ResultBean getList(String token,int currentPage,int pageSize,int category);
 

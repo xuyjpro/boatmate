@@ -25,7 +25,7 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 	 * @param category  0 寻物 	1 失物		2跳蚤
 	 */
 	@Override
-	public ResultBean publish(String token, String content, List<File> pictures, int category, String keyword,String title) {
+	public ResultBean publish(String token, String content, List<File> pictures, int category, String keyword,String title,float price) {
 		// TODO Auto-generated method stub
 			
 		ResultBean rb=new ResultBean();
@@ -51,6 +51,7 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 			stuff.setCategory(category);
 			stuff.setKeyword(keyword);
 			stuff.setTitle(title);
+			stuff.setPrice(price);
 			stuff.setTime(System.currentTimeMillis());
 			if(pictures!=null){
 				if(pictures.size()==1){
