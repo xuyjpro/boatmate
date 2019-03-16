@@ -31,14 +31,14 @@ public class AppVersionDAO extends BaseDAO {
 			rb.setCode(200);
 			
 			rb.setData(list);
-			
+			ts.commit();
 			
 		}catch(Exception e){
 			e.printStackTrace();
 			
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -71,11 +71,11 @@ public class AppVersionDAO extends BaseDAO {
 			rb.setCode(200);
 			rb.setData(av);
 		}catch(Exception e){
-			e.printStackTrace();
+			
 			
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setData(e.getMessage());
 			
 		}finally {
 			session.close();

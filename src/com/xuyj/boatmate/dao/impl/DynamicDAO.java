@@ -85,17 +85,16 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 				}
 			}
 			
-	
+			ts.commit();
+
 			rb.setCode(200);
 			rb.setMessage("success");
 			rb.setData(list);
-			ts.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 
 		} finally {
 			session.close();
@@ -169,18 +168,17 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 
 				}
 			}			
-			
+			ts.commit();
 			
 			rb.setCode(200);
-			rb.setMessage("sucess");
 			rb.setData(list);
-			ts.commit();
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 
 		} finally {
 			session.close();
@@ -235,7 +233,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 					ts.rollback();
 				}
 				rb.setCode(400);
-				rb.setMessage("请求异常");
+				rb.setMessage(e.getMessage());
 
 			} finally {
 				if (session != null) {
@@ -280,7 +278,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -315,7 +313,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -353,7 +351,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -464,11 +462,10 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 				
 				
 				rb.setCode(200);
-				rb.setMessage("success");
 				rb.setData(cd);
 			}else{
 				rb.setCode(400);
-				rb.setData("该动态不存在");
+				rb.setMessage("该动态不存在");
 			}
 			ts.commit();
 
@@ -477,7 +474,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}

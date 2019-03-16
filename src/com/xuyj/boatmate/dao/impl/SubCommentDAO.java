@@ -64,7 +64,7 @@ public class SubCommentDAO extends BaseDAO implements ISubCommentDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -132,6 +132,8 @@ public class SubCommentDAO extends BaseDAO implements ISubCommentDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 
@@ -160,7 +162,7 @@ public class SubCommentDAO extends BaseDAO implements ISubCommentDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("删除失败，请刷新重试！");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}

@@ -54,7 +54,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			ts.rollback();
 
 			rb.setCode(400);
-			rb.setMessage("发布失败");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -105,7 +105,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("查询失败");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -170,7 +170,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("查询失败");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -210,7 +210,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常，刷新重试");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -293,10 +293,9 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			ts.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -352,7 +351,7 @@ public class SchoolHelpDAO extends BaseDAO implements ISchoolHelpDAO {
 			e.printStackTrace();
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}

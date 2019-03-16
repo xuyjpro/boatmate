@@ -56,14 +56,13 @@ public class CommentDAO extends BaseDAO implements ICommentDAO {
 
 			ts.commit();
 			rb.setCode(200);
-			rb.setMessage("success");
 			rb.setData(comment);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -137,14 +136,15 @@ public class CommentDAO extends BaseDAO implements ICommentDAO {
 			}			
 			
 			
-			
-			rb.setCode(200);
-			rb.setMessage("success");
-			rb.setData(list);
 			ts.commit();
+
+			rb.setCode(200);
+			rb.setData(list);
 		} catch (Exception e) {
 			// TODO: handle exception
 			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 
@@ -186,7 +186,7 @@ public class CommentDAO extends BaseDAO implements ICommentDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -221,7 +221,7 @@ public class CommentDAO extends BaseDAO implements ICommentDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -258,7 +258,7 @@ public class CommentDAO extends BaseDAO implements ICommentDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -393,7 +393,7 @@ public class CommentDAO extends BaseDAO implements ICommentDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}

@@ -62,6 +62,8 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 			if (ts != null) {
 				ts.rollback();
 			}
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 
@@ -124,7 +126,7 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("请求异常");
+			rb.setMessage(e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -176,6 +178,8 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 			} catch (Exception e) {
 				// TODO: handle exception
 				ts.rollback();
+				rb.setCode(400);
+				rb.setMessage(e.getMessage());
 			} finally {
 				session.close();
 			}
@@ -262,6 +266,8 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 			if (ts != null) {
 				ts.rollback();
 			}
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
 		} finally {
 			if (session != null) {
 				session.close();

@@ -81,9 +81,9 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 			e.printStackTrace();
 			ts.rollback();
 			rb.setCode(400);
-			rb.setMessage("服务器异常");
+			rb.setMessage(e.getMessage());
 		}finally {
-			
+			session.close();
 		}
 		
 		
@@ -134,7 +134,9 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 			
 		}catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}
@@ -226,7 +228,9 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 			
 		}catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
 		}finally {
 			session.close();
 		}

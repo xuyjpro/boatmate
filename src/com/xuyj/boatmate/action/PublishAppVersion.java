@@ -16,7 +16,7 @@ public class PublishAppVersion extends BaseAction {
 		AppVersionDAO dao = (AppVersionDAO) getApplicationContext().getBean("appVersionDAO");
 
 		rb = dao.publishVersion(versionCode, versionName, apkFile);
-
+		
 		return SUCCESS;
 	}
 
