@@ -57,5 +57,11 @@ public class PublishStuff extends BaseAction {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
 }
