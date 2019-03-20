@@ -236,4 +236,31 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 		}
 		return rb;
 	}
+
+	@Override
+	public ResultBean getDetail(int id) {
+		// TODO Auto-generated method stub
+		ResultBean rb=new ResultBean();
+		Session session = getSession();
+		
+		try{
+		
+			String hql="select s.id as id,u.nickname from Stuff s,UserInfo u where s.id=? and s.uid=u.id";
+			Query query=session.createQuery(hql);
+			query.setParameter(0, id);
+			query.setMaxResults(1);
+			List list=query.list();
+			if(list!=null||list.size()!=0){
+				//CusStuff cs=(CusStuff) list.get(0);
+				rb.setData(list);
+			}
+			rb.setCode(200);
+		}catch (Exception e) {
+			// TODO: handle exception
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
+		}
+		
+		return rb;
+	}
 }

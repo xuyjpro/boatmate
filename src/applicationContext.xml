@@ -154,4 +154,7 @@
 	<bean id="getStuffs" class="com.xuyj.boatmate.action.GetStuffs"
 		scope="prototype" />
 		
+		<bean id="stuffDetail" class="com.xuyj.boatmate.action.StuffDetail"
+		scope="prototype" />
+		
 </beans>
