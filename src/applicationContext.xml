@@ -156,5 +156,7 @@
 		
 		<bean id="stuffDetail" class="com.xuyj.boatmate.action.StuffDetail"
 		scope="prototype" />
-		
+			
+		<bean id="stuffDelete" class="com.xuyj.boatmate.action.StuffDelete"
+		scope="prototype" />
 </beans>

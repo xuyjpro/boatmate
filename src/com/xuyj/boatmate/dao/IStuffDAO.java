@@ -11,4 +11,6 @@ public interface IStuffDAO {
 	ResultBean getList(int currentPage,int pageSize,int category);
 	ResultBean getList(String token,int currentPage,int pageSize,int category);
 	ResultBean getDetail(int id);
+	ResultBean delete(String token,int id);
+	
 }

@@ -263,4 +263,42 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 		
 		return rb;
 	}
+
+	@Override
+	public ResultBean delete(String token, int id) {
+		// TODO Auto-generated method stub
+		ResultBean rb=new ResultBean();
+		int uid = 0;
+		try {
+			uid = Integer.parseInt(SecretUtils.decode(token));
+
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+			rb.setCode(400);
+			rb.setMessage("该用户不存在");
+			return rb;
+		}
+		Session session = getSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			String hql="delete Stuff where id=? and uid=?";
+			Query query=session.createQuery(hql);
+			
+			query.setParameter(0, id);
+			query.setParameter(1, uid);
+			query.executeUpdate();
+			ts.commit();
+			rb.setCode(200);
+	
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
+		}finally {
+			session.close();
+		}
+		return rb;
+	}
 }
