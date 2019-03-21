@@ -10,7 +10,9 @@ import org.hibernate.Transaction;
 
 import com.xuyj.boatmate.dao.BaseDAO;
 import com.xuyj.boatmate.dao.IStuffDAO;
+import com.xuyj.boatmate.dao.impl.SchoolHelpDAO.CusSchoolHelp;
 import com.xuyj.boatmate.model.ResultBean;
+import com.xuyj.boatmate.model.SchoolHelp;
 import com.xuyj.boatmate.model.Stuff;
 import com.xuyj.boatmate.model.UserInfo;
 import com.xuyj.boatmate.tools.ImageTools;
@@ -245,14 +247,31 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 		
 		try{
 		
-			String hql="select s.id as id,u.nickname from Stuff s,UserInfo u where s.id=? and s.uid=u.id";
+			String hql="from Stuff where id=?";
 			Query query=session.createQuery(hql);
+			
 			query.setParameter(0, id);
 			query.setMaxResults(1);
 			List list=query.list();
+		
 			if(list!=null||list.size()!=0){
-				//CusStuff cs=(CusStuff) list.get(0);
-				rb.setData(list);
+				Stuff sh=(Stuff) list.get(0);
+				CusStuff csh = new CusStuff();
+				// 头像、名称
+				String hql2 = "from UserInfo where id=?";
+				query = session.createQuery(hql2);
+				query.setParameter(0, sh.getUid());
+				query.setMaxResults(1);
+
+				List list1 = query.list();
+				if (list1 != null && list1.size() != 0) {
+					UserInfo ui = (UserInfo) list1.get(0);
+					csh.setHeadPic(ui.getHeadPic());
+					csh.setNickname(ui.getNickname());
+				}
+				csh.setStuff(sh);
+				rb.setCode(200);
+				rb.setData(csh);
 			}
 			rb.setCode(200);
 		}catch (Exception e) {
