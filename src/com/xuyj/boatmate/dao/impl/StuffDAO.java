@@ -277,6 +277,7 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 					UserInfo ui = (UserInfo) list1.get(0);
 					csh.setHeadPic(ui.getHeadPic());
 					csh.setNickname(ui.getNickname());
+					csh.setHeartWord(ui.getHeartWord());
 				}
 				csh.setStuff(sh);
 				rb.setCode(200);
