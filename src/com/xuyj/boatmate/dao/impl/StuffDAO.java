@@ -148,6 +148,14 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 	public static class CusStuff{
 		private String headPic;
 		private String nickname;
+		private String heartWord;
+		
+		public String getHeartWord() {
+			return heartWord;
+		}
+		public void setHeartWord(String heartWord) {
+			this.heartWord = heartWord;
+		}
 		private Stuff stuff;
 		
 		public Stuff getStuff() {
@@ -217,6 +225,7 @@ public class StuffDAO extends BaseDAO implements IStuffDAO {
 						CusStuff cs=new CusStuff();
 						cs.setHeadPic(ui.getHeadPic());
 						cs.setNickname(ui.getNickname());
+						cs.setHeartWord(ui.getHeartWord());
 						cs.setStuff(s);
 						list2.add(cs);
 					}
