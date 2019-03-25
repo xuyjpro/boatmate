@@ -78,6 +78,17 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
+		<!-- 修改密码 -->
+		<action name="modifyPassword" class="modifyPassword" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
 		<!-- 发布动态 -->
 		<action name="publishDynamic" class="publishDynamic" method="post">
 			<result name="success" type="json">
@@ -316,6 +327,16 @@
 			</result>
 		</action>
 		<action name="stuffDelete" class="stuffDelete" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+			<action name="publishFeedback" class="publishFeedback" method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
 

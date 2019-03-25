@@ -277,4 +277,52 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 		return rb;
 	}
 
+	@Override
+	public ResultBean modifyPasswd(String token, String oldPassword, String newPassword) {
+		// TODO Auto-generated method stub
+		ResultBean rb = new ResultBean();
+		int uid;
+		try {
+			uid = Integer.parseInt(SecretUtils.decode(token));
+		} catch (Exception e) {
+			// TODO: handle exception
+			rb.setCode(400);
+			rb.setMessage("请传入正确身份验证信息");
+			return rb;
+		}
+		Session session = getSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			String hql="from UserInfo where id=?";
+			Query query=session.createQuery(hql);
+			query.setParameter(0, uid);
+			
+			List list=query.list();
+			if(list!=null&&list.size()!=0){
+				UserInfo userInfo =(UserInfo) list.get(0);
+				if(userInfo.getPassword().equals(oldPassword)){
+					userInfo.setPassword(newPassword);
+					session.update(userInfo);
+					ts.commit();
+					rb.setCode(200);
+				}else{
+					rb.setCode(400);
+					rb.setMessage("旧密码不正确");
+				}
+				
+			}else{
+				rb.setCode(400);
+				rb.setMessage("身份信息错误，请重新登录");
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
+		}finally {
+			session.close();
+		}
+		return rb;
+	}
 }

@@ -12,4 +12,6 @@ public interface IUserInfoDAO {
 	
 
 	public ResultBean editUserInfo(String token,String nickname,int gender,String birthday,String heartWord,File headPic);
+	public ResultBean modifyPasswd(String token,String oldPassword,String newPassword);
+
 }

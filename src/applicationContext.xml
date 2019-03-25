@@ -45,7 +45,8 @@
 				<value>com/xuyj/boatmate/model/Stuff.hbm.xml</value>
 				<value>
 					com/xuyj/boatmate/model/AppVersion.hbm.xml
-				</value></list>
+				</value>
+				<value>com/xuyj/boatmate/model/Feedback.hbm.xml</value></list>
 		</property>
 	</bean>
 	<bean id="transactionManager"
@@ -83,7 +84,8 @@
 
 <bean id="appVersionDAO" class="com.xuyj.boatmate.dao.impl.AppVersionDAO"
 		parent="baseDAO" />
-		
+		<bean id="feedbackDAO" class="com.xuyj.boatmate.dao.impl.FeedbackDAO"
+		parent="baseDAO" />
 	<!--Actions -->
 	<!-- 版本控制 -->
 	
@@ -104,6 +106,9 @@
 
 	<bean id="editUserInfo" class="com.xuyj.boatmate.action.EditUserInfo"
 		scope="prototype" />
+		<bean id="modifyPassword" class="com.xuyj.boatmate.action.ModifyPassword"
+		scope="prototype" />
+		<!-- 动态 -->
 	<bean id="publishDynamic" class="com.xuyj.boatmate.action.PublishDynamic"
 		scope="prototype" />
 
@@ -158,5 +163,8 @@
 		scope="prototype" />
 			
 		<bean id="stuffDelete" class="com.xuyj.boatmate.action.StuffDelete"
+		scope="prototype" />
+		<!--反馈  -->
+			<bean id="publishFeedback" class="com.xuyj.boatmate.action.PublishFeedback"
 		scope="prototype" />
 </beans>
