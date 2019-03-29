@@ -25,6 +25,11 @@ public class ImageTools {
 //		if(!file.exists()){
 //			file.mkdir();
 //		}
+		String realName=imagePic.getName();
+		
+		String cate=realName.substring(realName.lastIndexOf('.'));
+		System.err.println("realName"+cate);
+		
 		String path=imageDirPath+File.separator+name;
 		boolean isSuccess=false;
 		 OutputStream os = null;
