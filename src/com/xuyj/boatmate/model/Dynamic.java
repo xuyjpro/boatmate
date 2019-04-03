@@ -1,5 +1,8 @@
 package com.xuyj.boatmate.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Dynamic entity. @author MyEclipse Persistence Tools
  */
@@ -14,6 +17,8 @@ public class Dynamic implements java.io.Serializable {
 	private Integer comment;
 	private String content;
 	private Long time;
+	private String picture;
+
 
 	// Constructors
 
@@ -29,12 +34,14 @@ public class Dynamic implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Dynamic(Integer uid, Integer awesome, Integer comment, String content, Long time) {
+	public Dynamic(Integer uid, Integer awesome, Integer comment, String content, Long time, String picture) {
 		this.uid = uid;
 		this.awesome = awesome;
 		this.comment = comment;
 		this.content = content;
 		this.time = time;
+		this.picture = picture;
+
 	}
 
 	// Property accessors
@@ -86,5 +93,14 @@ public class Dynamic implements java.io.Serializable {
 	public void setTime(Long time) {
 		this.time = time;
 	}
+
+	public String getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 
 }

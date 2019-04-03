@@ -25,5 +25,9 @@
         <property name="time" type="java.lang.Long">
             <column name="time" not-null="true" />
         </property>
+        <property name="picture" type="java.lang.String">
+            <column name="picture" length="20" />
+        </property>
+       
     </class>
 </hibernate-mapping>

@@ -1,5 +1,6 @@
 package com.xuyj.boatmate.dao.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.xuyj.boatmate.model.Dynamic;
 import com.xuyj.boatmate.model.ResultBean;
 import com.xuyj.boatmate.model.UserInfo;
 import com.xuyj.boatmate.tools.HibernateUtil;
+import com.xuyj.boatmate.tools.ImageTools;
 import com.xuyj.boatmate.tools.SecretUtils;
 
 public class DynamicDAO extends BaseDAO implements IDynamicDAO {
@@ -187,7 +189,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 	}
 
 	@Override
-	public ResultBean publishDynamic(String token, String content) {
+	public ResultBean publishDynamic(String token, String content,File picture) {
 		// TODO Auto-generated method stub
 		ResultBean rb = new ResultBean();
 
@@ -208,7 +210,11 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 				rb.setMessage("该用户不存在");
 				return rb;
 			}
-
+			String picName=null;
+			if(picture!=null){
+				picName=System.currentTimeMillis()+"";
+				ImageTools.saveImage(picture, picName);
+			}
 			Session session = getSession();
 			Transaction ts = session.beginTransaction();
 			try {
@@ -220,7 +226,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 				dynamic.setUid(uid);
 				dynamic.setContent(content);
 				dynamic.setTime(System.currentTimeMillis());
-
+				dynamic.setPicture(picName);
 				session.save(dynamic);
 
 				ts.commit();
