@@ -227,6 +227,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 				dynamic.setContent(content);
 				dynamic.setTime(System.currentTimeMillis());
 				dynamic.setPicture(picName);
+				
 				session.save(dynamic);
 
 				ts.commit();
@@ -381,18 +382,14 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 		}
 		
 		private void setDynamic(Dynamic d){
-//			this.id=d.getId();
-//			this.uid = d.getUid();
-//			this.awesome = d.getAwesome();
-//			this.comment = d.getComment();
-//			this.content = d.getContent();
-//			this.time = d.getTime();
+
 			setId(d.getId());
 			setUid(d.getUid());
 			setAwesome(d.getAwesome());
 			setComment(d.getComment());
 			setContent(d.getContent());
 			setTime(d.getTime());
+			setPicture(d.getPicture());
 		}
 	
 
