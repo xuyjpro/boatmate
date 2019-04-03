@@ -46,7 +46,9 @@
 				<value>
 					com/xuyj/boatmate/model/AppVersion.hbm.xml
 				</value>
-				<value>com/xuyj/boatmate/model/Feedback.hbm.xml</value></list>
+				<value>com/xuyj/boatmate/model/Feedback.hbm.xml</value>
+				<value>com/xuyj/boatmate/model/Blog.hbm.xml</value>
+			</list>
 		</property>
 	</bean>
 	<bean id="transactionManager"
@@ -82,17 +84,19 @@
 		parent="baseDAO" />
 
 
-<bean id="appVersionDAO" class="com.xuyj.boatmate.dao.impl.AppVersionDAO"
+	<bean id="appVersionDAO" class="com.xuyj.boatmate.dao.impl.AppVersionDAO"
 		parent="baseDAO" />
-		<bean id="feedbackDAO" class="com.xuyj.boatmate.dao.impl.FeedbackDAO"
+	<bean id="feedbackDAO" class="com.xuyj.boatmate.dao.impl.FeedbackDAO"
+		parent="baseDAO" />
+	<bean id="blogDAO" class="com.xuyj.boatmate.dao.impl.BlogDAO"
 		parent="baseDAO" />
 	<!--Actions -->
 	<!-- 版本控制 -->
-	
+
 	<bean id="publishAppVersion" class="com.xuyj.boatmate.action.PublishAppVersion"
 		scope="prototype" />
-		
-			
+
+
 	<bean id="getAppVersion" class="com.xuyj.boatmate.action.GetAppVersion"
 		scope="prototype" />
 	<!-- 登录注册 -->
@@ -106,9 +110,9 @@
 
 	<bean id="editUserInfo" class="com.xuyj.boatmate.action.EditUserInfo"
 		scope="prototype" />
-		<bean id="modifyPassword" class="com.xuyj.boatmate.action.ModifyPassword"
+	<bean id="modifyPassword" class="com.xuyj.boatmate.action.ModifyPassword"
 		scope="prototype" />
-		<!-- 动态 -->
+	<!-- 动态 -->
 	<bean id="publishDynamic" class="com.xuyj.boatmate.action.PublishDynamic"
 		scope="prototype" />
 
@@ -158,13 +162,17 @@
 		scope="prototype" />
 	<bean id="getStuffs" class="com.xuyj.boatmate.action.GetStuffs"
 		scope="prototype" />
-		
-		<bean id="stuffDetail" class="com.xuyj.boatmate.action.StuffDetail"
+
+	<bean id="stuffDetail" class="com.xuyj.boatmate.action.StuffDetail"
 		scope="prototype" />
-			
-		<bean id="stuffDelete" class="com.xuyj.boatmate.action.StuffDelete"
+
+	<bean id="stuffDelete" class="com.xuyj.boatmate.action.StuffDelete"
 		scope="prototype" />
-		<!--反馈  -->
-			<bean id="publishFeedback" class="com.xuyj.boatmate.action.PublishFeedback"
+	<!--反馈 -->
+	<bean id="publishFeedback" class="com.xuyj.boatmate.action.PublishFeedback"
 		scope="prototype" />
+	<!-- 博客 -->
+	<bean id="getBlogs" class="com.xuyj.boatmate.action.GetBlogs"
+		scope="prototype" />
+
 </beans>

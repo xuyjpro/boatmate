@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd" >
 <struts>
-      <constant name="struts.multipart.maxSize" value="20971520" /> <!-- 设置允许最大值  20MB(1024*1024*20) -->  
+	<constant name="struts.multipart.maxSize" value="20971520" /> <!-- 设置允许最大值 20MB(1024*1024*20) -->
 
 	<package name="download" namespace="/" extends="struts-default">
 		<!-- -->
@@ -24,7 +24,8 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
-		<action name="publishAppVersion" class="publishAppVersion" method="post">
+		<action name="publishAppVersion" class="publishAppVersion"
+			method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
 
@@ -336,7 +337,17 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>
-			<action name="publishFeedback" class="publishFeedback" method="post">
+		<action name="publishFeedback" class="publishFeedback" method="post">
+			<result name="success" type="json">
+				<param name="root">rb</param>
+
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="getBlogs" class="getBlogs" method="post">
 			<result name="success" type="json">
 				<param name="root">rb</param>
 
