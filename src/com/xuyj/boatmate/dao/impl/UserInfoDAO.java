@@ -166,7 +166,7 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 					rb.setMessage("该用户不存在");
 					return rb;
 				}
-				
+
 				ts.commit();
 
 				UserInfo user = (UserInfo) users.get(0);
@@ -206,9 +206,10 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 
 		if (headPic != null) { // 先判断是否有图片
 			time = System.currentTimeMillis();
-			//String fileName = ToolUtil.getWebRootSubDir("/image") + File.separator + time;
+			// String fileName = ToolUtil.getWebRootSubDir("/image") +
+			// File.separator + time;
 			try {
-				if (!ImageTools.saveImage(headPic, time+"")) {// 保存失败则直接返回
+				if (!ImageTools.saveImage(headPic, time + "")) {// 保存失败则直接返回
 					rb.setCode(400);
 					rb.setMessage("图片上传失败");
 					return rb;
@@ -292,37 +293,77 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 		}
 		Session session = getSession();
 		Transaction ts = session.beginTransaction();
-		try{
-			String hql="from UserInfo where id=?";
-			Query query=session.createQuery(hql);
+		try {
+			String hql = "from UserInfo where id=?";
+			Query query = session.createQuery(hql);
 			query.setParameter(0, uid);
-			
-			List list=query.list();
-			if(list!=null&&list.size()!=0){
-				UserInfo userInfo =(UserInfo) list.get(0);
-				if(userInfo.getPassword().equals(oldPassword)){
+
+			List list = query.list();
+			if (list != null && list.size() != 0) {
+				UserInfo userInfo = (UserInfo) list.get(0);
+				if (userInfo.getPassword().equals(oldPassword)) {
 					userInfo.setPassword(newPassword);
 					session.update(userInfo);
 					ts.commit();
 					rb.setCode(200);
-				}else{
+				} else {
 					rb.setCode(400);
 					rb.setMessage("旧密码不正确");
 				}
-				
-			}else{
+
+			} else {
 				rb.setCode(400);
 				rb.setMessage("身份信息错误，请重新登录");
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			// TODO: handle exception
 			ts.rollback();
 			rb.setCode(400);
 			rb.setMessage(e.getMessage());
-		}finally {
+		} finally {
 			session.close();
 		}
+		return rb;
+	}
+
+	@Override
+	public ResultBean getUserInfoByPhone(String phone) {
+		// TODO Auto-generated method stub
+		ResultBean rb = new ResultBean();
+
+		Session session = getSession();
+		Transaction ts = session.beginTransaction();
+
+		try {
+			Query query = session.createQuery("from UserInfo where phone=?");
+			query.setParameter(0, phone);
+
+			query.setMaxResults(1);
+			List users = query.list();
+			if (users == null || users.size() == 0) {
+				rb.setCode(400);
+				rb.setMessage("该用户不存在");
+				return rb;
+			}
+
+			ts.commit();
+
+			UserInfo user = (UserInfo) users.get(0);
+			rb.setCode(200);
+			rb.setMessage("success");
+			user.setPassword("");
+			rb.setData(user);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			ts.rollback();
+			rb.setCode(400);
+			rb.setMessage(e.getMessage());
+		} finally {
+			session.close();
+		}
+
 		return rb;
 	}
 }
