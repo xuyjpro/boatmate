@@ -9,7 +9,7 @@ public class PublishAppVersion extends BaseAction {
 	private int versionCode;
 	private String versionName;
 	private File apkFile;
-
+	
 	@Override
 	public String post() {
 		// TODO Auto-generated method stub

@@ -27,9 +27,7 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 			rb.setCode(400);
 			rb.setMessage("参数不完整");
 			return rb;
-
 		}
-
 		Session session = getSession();
 		Transaction ts = session.beginTransaction();
 		try {
@@ -202,28 +200,10 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 			rb.setMessage("请传入正确身份验证信息");
 			return rb;
 		}
-		long time = 0;
 
-		if (headPic != null) { // 先判断是否有图片
-			time = System.currentTimeMillis();
-			// String fileName = ToolUtil.getWebRootSubDir("/image") +
-			// File.separator + time;
-			try {
-				if (!ImageTools.saveImage(headPic, time + "")) {// 保存失败则直接返回
-					rb.setCode(400);
-					rb.setMessage("图片上传失败");
-					return rb;
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-				rb.setCode(400);
-				rb.setMessage("图片上传失败");
-				return rb;
-			}
-		}
+		String picName = null;
 		Session session = getSession();
-		Transaction ts = session.beginTransaction();
-
+		Transaction ts = null;
 		try {
 
 			Query query = session.createQuery("from UserInfo where id=?");
@@ -250,18 +230,37 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 				if (heartWord != null) {
 					user.setHeartWord(heartWord);
 				}
-				if (time != 0) {
-					user.setHeadPic(time + "");
+				if (headPic != null) {
+					if (user.getHeadPic() == null || user.getHeadPic().equals("")) {
+						picName = System.currentTimeMillis() + "";
+					} else {
+						picName = user.getHeadPic();
+					}
+					try {
+						if (!ImageTools.saveImage(headPic, picName)) {// 保存失败则直接返回
+							rb.setCode(400);
+							rb.setMessage("图片上传失败");
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
+						rb.setCode(400);
+						rb.setMessage("图片上传失败");
+					}
+
+					user.setHeadPic(picName);
+
 				}
 
+				ts = session.beginTransaction();
+
 				session.update(user);
+				ts.commit();
 
 				rb.setCode(200);
 				rb.setMessage("success");
 				rb.setData(user);
 			}
-			ts.commit();
-
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 			if (ts != null) {
@@ -337,6 +336,7 @@ public class UserInfoDAO extends BaseDAO implements IUserInfoDAO {
 
 		try {
 			Query query = session.createQuery("from UserInfo where phone=?");
+
 			query.setParameter(0, phone);
 
 			query.setMaxResults(1);
