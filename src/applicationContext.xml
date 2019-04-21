@@ -6,9 +6,9 @@
 
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<!-- <property name="url" value="jdbc:mysql://localhost:3306/?serverTimezone=GMT"> -->
-		<property name="url"
-			value="jdbc:mysql://118.31.76.29/?serverTimezone=GMT">
+		<property name="url" value="jdbc:mysql://localhost:3306/?serverTimezone=GMT">
+	<!-- 	<property name="url"
+			value="jdbc:mysql://118.31.76.29/?serverTimezone=GMT"> -->
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value="1+1==Two"></property>
