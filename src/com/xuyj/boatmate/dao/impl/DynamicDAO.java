@@ -39,20 +39,22 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 		Transaction ts = session.beginTransaction();
 
 		try {
+
 			Query query = null;
-			String hql = "";
+			 String hql = "";
 			if (category == 0) { // 最新
-				hql = "from Dynamic order by id desc";
+			     hql = "from Dynamic order by id desc";
 
-			} else {// 其他最热
-				hql = "from Dynamic  order by awesome+comment desc";
+			 } else {// 其他最热
+			     hql = "from Dynamic  order by awesome+comment desc";
 
-			}
-			query = session.createQuery(hql);			
+			 }
+			 query = session.createQuery(hql);       
 
 			query.setFirstResult((currentPage - 1) * pageSize);
 			query.setMaxResults(pageSize);
-			List<Dynamic> dynamics = query.list();
+			 List<Dynamic> dynamics = query.list();
+
 			List<CusDynamic> list=new ArrayList<>();
 			if(dynamics!=null){
 				for(Dynamic d:dynamics){
@@ -193,6 +195,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 		// TODO Auto-generated method stub
 		ResultBean rb = new ResultBean();
 
+		//判断用户身份令牌token
 		if (token == null || content == null) {
 
 			rb.setCode(400);
@@ -202,6 +205,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 
 			int uid;
 			try {
+				//对身份令牌进行解码
 				uid = Integer.parseInt(SecretUtils.decode(token));
 
 			} catch (NumberFormatException e) {
@@ -227,7 +231,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 				dynamic.setContent(content);
 				dynamic.setTime(System.currentTimeMillis());
 				dynamic.setPicture(picName);
-				
+				//保存动态信息
 				session.save(dynamic);
 
 				ts.commit();
@@ -237,6 +241,7 @@ public class DynamicDAO extends BaseDAO implements IDynamicDAO {
 			} catch (Exception e) {
 				// TODO: handle exception
 				if (ts != null) {
+					//事务回滚
 					ts.rollback();
 				}
 				rb.setCode(400);
